@@ -110,6 +110,22 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    // Create a comparison object
+    let cache = {};
+    let results = [];
+
+    // Create a default value for iterator (in the event iterator is undefined)
+    iterator = iterator || isSorted || _.identity;
+
+    for (var i = 0; i < array.length; i++) {
+      let currentElement = array[i];
+      if (cache[iterator(currentElement)] === undefined) {
+        cache[iterator(currentElement)] = 1;
+        results.push(currentElement);
+      }
+    }
+
+    return results;
   };
 
 
