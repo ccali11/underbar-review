@@ -184,8 +184,7 @@
     let truth = arguments.length === 2;
 
     // Iterate over the collection using _.each
-    for (var i = 0; i < collection.length; i++) {
-      let currentElement = collection[i];
+    _.each (collection, function (currentElement) {
       // If truth, assign iterator to currentElement
       if (truth) {
         accumulator = currentElement;
@@ -195,7 +194,9 @@
       } else {
         accumulator = iterator(accumulator, currentElement);
       }
-    }
+    });
+
+
     return accumulator;
   };
 
