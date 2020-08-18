@@ -134,6 +134,12 @@
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+    let results = [];
+    iterator = iterator || _.identity;
+    _.each(collection, function(element) {
+      results.push(iterator(element));
+    });
+    return results;
   };
 
   /*
@@ -246,7 +252,7 @@
     var alreadyCalled = false;
     var result;
 
-    // TIP: We'll return a new function that delegates to the old one, but only
+    // TIP: We'asadasdsadasdasddsadsall return a new function that delegates to the old one, but only
     // if it hasn't been called before.
     return function() {
       if (!alreadyCalled) {
