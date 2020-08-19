@@ -332,11 +332,15 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
-    // Create an object with keys that are the unique arguments and values that are the return value of the function when run with those unique arguments
     let cache = {};
 
-
-
+    return function() {
+      let argues = JSON.stringify(arguments);
+      if (cache[argues] === undefined) {
+        cache[argues] = func.apply(this, arguments);
+      }
+      return cache[argues];
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
