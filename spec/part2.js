@@ -274,9 +274,14 @@
       });
 
       it('should copy any property whose key is not already set on the target', function() {
+        var destination = {'name': 'Jase'};
+        var source = {'name': 'Chris'};
+
+        _.defaults(destination, source);
+
+        expect(destination.name).to.equal('Jase');
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
       });
 
       it('should not copy a property if that key is already set on the target', function() {

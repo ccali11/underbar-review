@@ -260,7 +260,6 @@
   _.extend = function(obj) {
     //use arguments to gather all arguments not shown
     let [first, ...others] = arguments;
-
     // iterate over others
     for (let i = 0; i < others.length; i++) {
       let object = others[i];
@@ -270,13 +269,26 @@
         obj[key] = object[key];
       }
     }
-
     return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    //use arguments to gather all arguments not shown
+    let [first, ...others] = arguments;
+    // iterate over others
+    for (let i = 0; i < others.length; i++) {
+      let object = others[i];
+      // iterate over each current object
+      for (var key in object) {
+        if (obj[key] === undefined) {
+          // set each property
+          obj[key] = object[key];
+        }
+      }
+    }
+    return obj;
   };
 
 
