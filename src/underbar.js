@@ -364,9 +364,22 @@
   // TIP: This function's test suite will ask that you not modify the original
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
-  _.shuffle = function(array) {
-
+  _.shuffle = function(arr) {
+    let copy = arr.slice();
+    let shuffled = [];
+    while (shuffled.length < arr.length) {
+      for (let x = 0; x < copy.length; x++) {
+        if (Math.floor(Math.random() * 3) === 1) {
+          shuffled.push(copy[x]);
+        } else {
+          shuffled.unshift(copy[x]);
+        }
+      }
+    }
+    return shuffled;
   };
+
+
 
 
   /**
