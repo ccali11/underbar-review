@@ -332,6 +332,11 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    // Create an object with keys that are the unique arguments and values that are the return value of the function when run with those unique arguments
+    let cache = {};
+
+
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -341,6 +346,11 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    let [funct, time, ...others] = arguments;
+    if (others.length > 0) {
+      func = func.apply(this, others);
+    }
+    return setTimeout(func, wait);
   };
 
 
@@ -355,6 +365,7 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+
   };
 
 
