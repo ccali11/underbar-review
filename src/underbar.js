@@ -99,9 +99,9 @@
     // copying code in and modifying it
     let results = [];
 
-    _.each(collection, function(el) {
-      if (!test(el)) {
-        results.push(el);
+    _.filter(collection, (item) => {
+      if (!test(item)) {
+        results.push(item);
       }
     });
 
@@ -382,9 +382,6 @@
     }
     return shuffled;
   };
-
-
-
 
   /**
    * ADVANCED
