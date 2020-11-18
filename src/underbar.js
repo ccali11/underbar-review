@@ -437,7 +437,7 @@
     let max = 0;
     _.each(arguments, (arg) => {
       max = Math.max(arg.length, max);
-    })
+    });
 
     // Iterate over the longest argument
     for (let i = 0; i < max; i++) {
