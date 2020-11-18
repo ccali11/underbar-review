@@ -195,8 +195,6 @@
         accumulator = iterator(accumulator, currentElement);
       }
     });
-
-
     return accumulator;
   };
 
@@ -394,6 +392,10 @@
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    return _.map(collection, (item) => {
+      var method = typeof functionOrKey === 'string' ? item[functionOrKey] : functionOrKey;
+      return method.apply(item, args);
+    });
   };
 
   // Sort the object's values by a criterion produced by an iterator.
@@ -401,6 +403,20 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
+    if (!collection.length) {
+      throw new TypeError('Collection must be an array');
+    }
+
+    if (typeof iterator === 'string') {
+      var iter = iterator;
+      iterator = (item) => {
+        return item[iter]
+      };
+    }
+
+    return collection.sort((a, b) => {
+      return iterator(a) - iterator(b);
+    })
   };
 
   // Zip together two or more arrays with elements of the same index
@@ -409,6 +425,7 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
