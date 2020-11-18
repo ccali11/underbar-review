@@ -410,13 +410,13 @@
     if (typeof iterator === 'string') {
       var iter = iterator;
       iterator = (item) => {
-        return item[iter]
+        return item[iter];
       };
     }
 
     return collection.sort((a, b) => {
       return iterator(a) - iterator(b);
-    })
+    });
   };
 
   // Zip together two or more arrays with elements of the same index
@@ -425,7 +425,37 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    let result = [];
+    let friends = [];
 
+    // EDGE CASES:
+    // Less than two arrays as args
+    // No arrays as args
+    // One of the arrays is shorter
+
+    // Find longest array argument
+    let max = 0;
+    _.each(arguments, (arg) => {
+      max = Math.max(arg.length, max);
+    })
+
+    // Iterate over the longest argument
+    for (let i = 0; i < max; i++) {
+      // Iterate over all the arguments
+      for (let j = 0; j < arguments.length; j++) {
+        // Pass the first index of each into the friends array
+        let currentArg = arguments[j];
+        // Add undefined if current index is greater than current array length
+        friends.push(arguments[j][i]);
+      }
+      // Pass the friends array into the result array
+      result.push(friends);
+      // Empty the friends array
+      friends = [];
+    }
+
+    // Return result array
+    return result;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
